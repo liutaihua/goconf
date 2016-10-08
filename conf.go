@@ -436,7 +436,9 @@ func parseTime(v string) (int64, error) {
 	} else if strings.HasSuffix(v, "hour") {
 		unit = int64(time.Hour)
 		subIdx = subIdx - 4
-	}
+	} else {
+        return 0, errors.New("unknown unit time tag")
+    }
 	b, err := strconv.ParseInt(v[:subIdx], 10, 64)
 	if err != nil {
 		return 0, err
